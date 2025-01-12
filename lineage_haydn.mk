@@ -19,6 +19,20 @@ PRODUCT_NAME := lineage_haydn
 PRODUCT_SYSTEM_NAME := haydn_global
 PRODUCT_SYSTEM_DEVICE := haydn
 
+# RisingOS Flags
+TARGET_ENABLE_BLUR := true
+WITH_GMS := true
+TARGET_CORE_GMS := true
+TARGET_PREBUILT_GOOGLE_CAMERA := false
+TARGET_DEFAULT_PIXEL_LAUNCHER := true
+TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := false
+# Inherit RisingOS configurations.
+RISING_MAINTAINER = Asim Bhoi
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    RisingChipset="Qualcomm Snapdragon 888" \
+    RisingMaintainer="Asim Bhoi"
+    RISING_DEVICE="haydn"
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc=$(call normalize-path-list, "haydn_global-user 14 UKQ1.231207.002 V816.0.2.0.UKKMIXM release-keys") \
     DeviceName=$(PRODUCT_SYSTEM_DEVICE) \
@@ -31,5 +45,3 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
-# Sign Builds
-PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/xiaomi/priv-keys/releasekey
