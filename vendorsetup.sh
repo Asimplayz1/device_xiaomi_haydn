@@ -1,33 +1,53 @@
-echo 'Starting to clone stuffs needed to build for Haydn'
+echo "Starting to clone stuffs needed to build for Haydn"
 
-# Common Tree
-git clone --depth=1 https://github.com/xiaomi-haydn-devs/android_device_xiaomi_sm8350-common -b lineage-22 device/xiaomi/sm8350-common
-
-# Haydn Vendor
-git clone --depth=1 https://github.com/xiaomi-haydn-devs/proprietary_vendor_xiaomi_haydn -b lineage-22 vendor/xiaomi/haydn
-
-# Common Vendor
-git clone --depth=1 https://github.com/xiaomi-haydn-devs/proprietary_vendor_xiaomi_sm8350-common -b lineage-22 vendor/xiaomi/sm8350-common
+# Common device tree (chipset tree)
+if [ ! -d device/xiaomi/sm8350-common ]; then
+   git clone --depth=1 https://github.com/Asimplayz1/device-xiaomi-sm8350 -b lineage-22 device/xiaomi/sm8350-common
+fi
 
 # Kernel
-echo 'Cloning kernel tree'
-git clone --depth=1  https://github.com/xiaomi-haydn-devs/android_kernel_xiaomi_sm8350 --recursive -b lineage-21 kernel/xiaomi/sm8350
+if [ ! -d kernel/xiaomi/sm8350 ]; then
+   git clone --depth=1 https://github.com/xiaomi-haydn-devs/android_kernel_xiaomi_sm8350 --recursive -b lineage-21 kernel/xiaomi/sm8350
+fi
 
-# Firmware
-echo 'Cloning firmware'
-git clone --depth=1 https://gitlab.com/Alucard_Storm/vendor_xiaomi_haydn-firmware -b fourteen vendor/xiaomi/haydn-firmware
+# Main vendor tree
+if [ ! -d vendor/xiaomi/haydn ]; then
+   git clone --depth=1 https://github.com/Asimplayz1/vendor-xiaomi-haydn -b 15 vendor/xiaomi/haydn
+fi
 
-# Xiaomi
-echo 'Cloning hardware xiaomi'
-rm -rf hardware/xiaomi && git clone --depth=1 https://github.com/LineageOS/android_hardware_xiaomi -b lineage-21 hardware/xiaomi
+# Common vendor tree
+if [ ! -d vendor/xiaomi/sm8350-common ]; then
+   git clone --depth=1 https://github.com/Asimplayz1/vendor-xiaomi-sm8350 -b 15 vendor/xiaomi/sm8350-common
+fi
 
-# Camera
-echo 'Cloning Leica camera'
-git clone --depth=1 https://gitlab.com/Alucard_Storm/haydn-miuicamera -b fourteen-leica vendor/xiaomi/haydn-miuicamera
-rm -rf hardware/xiaomi/megvii
+# Firmware setup
+if [ ! -d vendor/xiaomi/haydn-firmware ]; then
+   git clone --depth=1 https://gitlab.com/Alucard_Storm/vendor_xiaomi_haydn-firmware.git -b fourteen vendor/xiaomi/haydn-firmware
+fi
 
-# Signature Keys
-echo 'Cloning Signing keys'
-git clone --depth=1 https://github.com/xiaomi-haydn-devs/priv_keys.git vendor/xiaomi/priv-keys
+# Xiaomi Leica Camera
+if [ ! -d vendor/xiaomi/haydn-miuicamera ]; then
+   git clone --depth=1 https://gitlab.com/Alucard_Storm/haydn-miuicamera.git -b fourteen-leica vendor/xiaomi/haydn-miuicamera
+fi
 
-echo 'delete vendorsetup.sh from device tree once this is done'
+# Dolby
+if [ ! -d hardware/dolby ]; then
+   git clone --depth=1 https://github.com/Asimplayz1/hardware_dolby -b 15 hardware/dolby
+fi
+
+# BCR (Basic Call Recorder)
+if [ ! -d vendor/bcr ]; then
+   git clone --depth=1 https://github.com/Chaitanyakm/vendor_bcr -b main vendor/bcr
+fi
+
+# Xiaomi hardware tree
+if [ ! -d hardware/xiaomi/* ]; then
+   git clone --depth=1 https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-21 hardware/xiaomi
+fi
+
+# Signed build
+if [ ! -d vendor/lineage-priv/* ]; then
+   curl -sSf https://raw.githubusercontent.com/Trijal08/crDroid-build-signed-script-auto/main/create-signed-env.sh | bash
+fi
+
+echo "Delete vendorsetup.sh from device tree once this is done."
