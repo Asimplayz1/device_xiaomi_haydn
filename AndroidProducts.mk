@@ -5,4 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_haydn.mk
+    $(LOCAL_DIR)/flare_haydn.mk
+
+COMMON_LUNCH_CHOICES := \
+    flare_haydn-ap4a-user \
+    flare_haydn-ap4a-userdebug \
+    flare_haydn-ap4a-eng
