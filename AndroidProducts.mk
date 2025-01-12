@@ -6,3 +6,8 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_haydn.mk
+
+COMMON_LUNCH_CHOICES := \
+    lineage_haydn-ap4a-user \
+    lineage_haydn-ap4a-userdebug \
+    lineage_haydn-ap4a-eng
