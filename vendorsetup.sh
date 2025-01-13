@@ -35,11 +35,6 @@ if [ ! -d hardware/dolby ]; then
    git clone --depth=1 https://github.com/Asimplayz1/hardware_dolby -b 15 hardware/dolby
 fi
 
-# BCR (Basic Call Recorder)
-if [ ! -d vendor/bcr ]; then
-   git clone --depth=1 https://github.com/Chaitanyakm/vendor_bcr -b main vendor/bcr
-fi
-
 # Xiaomi hardware tree
 if [ ! -d hardware/xiaomi/* ]; then
    git clone --depth=1 https://github.com/LineageOS/android_hardware_xiaomi.git -b lineage-21 hardware/xiaomi
