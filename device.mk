@@ -53,4 +53,8 @@ PRODUCT_SOONG_NAMESPACES += \
 $(call inherit-product, vendor/xiaomi/haydn/haydn-vendor.mk)
 
 # Call the Leica Camera setup
-$(call inherit-product-if-exists, vendor/xiaomi/haydn-miuicamera/products/miuicamera.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/camera/miuicamera.mk)
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.miui.notch=1 \
+    ro.product.mod_device=haydn_global
