@@ -27,7 +27,7 @@ fi
 
 # Xiaomi Leica Camera
 if [ ! -d vendor/xiaomi/haydn-miuicamera ]; then
-   git clone --depth=1 https://gitlab.com/Alucard_Storm/haydn-miuicamera.git -b fourteen-leica vendor/xiaomi/haydn-miuicamera
+   git clone --depth=1 https://gitlab.com/1xtAsh/haydn-miuicamera.git -b fifteen vendor/xiaomi/camera
 fi
 
 # Dolby
